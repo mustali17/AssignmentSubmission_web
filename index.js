@@ -35,7 +35,13 @@ app.post("/upload",async (req,res)=>{
     }
 }) 
 
-
+var name;
+app.post("/show",async (req,res)=>{
+Register.findOne({eno: req.body.Enrollment}).select('file').then((data)=>{
+     name= data;
+    console.log(name);
+})
+})
 
 
 
@@ -48,4 +54,10 @@ app.get("/",function(req,res){
 });
 app.get("/index",function(req,res){
     res.render('index');
+})
+app.get("/search",function(req,res){
+    res.render('search');
+})
+app.get("/display",function(req,res){
+    res.render('search',{name:name});
 })
