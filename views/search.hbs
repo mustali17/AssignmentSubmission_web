@@ -9,14 +9,16 @@
 
 </head>
 <body>
-    <form action="/show" method="POST">
+    <form action="/show">
         <label for="fname">Enrollment Number</label>
         <input type="text" name="Enrollment" placeholder="Enter Your enrollment no" id="fname">
        
-        <a href="display"><input type="submit" value="Fetch Data" ></a>
+        <input type="submit" value="Search" >
     </form>
-    <a href="display"><input type="submit" value="Check" ></a>
      <a href="/"><input type="submit" value="Go Back" ></a>
-    <h2>Your Submitted Assignment Link is: </h2><h3>{{name}}</h3>
+     {{#each list}}
+    <h2>Your Submitted Assignment Link is: </h2><h3>{{this.file}}</h3>
+     {{/each}}
+
 </body>
 </html>

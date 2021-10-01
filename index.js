@@ -1,6 +1,6 @@
 const express=require("express");
 
-const Register = require("./models/user");
+const Submit = require("./models/user");
 
 const app=express();
 
@@ -21,7 +21,7 @@ app.set("view engine","hbs");
 
 app.post("/upload",async (req,res)=>{
     try {
-        const new_user=new Register({
+        const new_user=new Submit({
             firstName:req.body.firstName,
             lastName:req.body.lastName,
             eno:req.body.eno,
@@ -35,13 +35,13 @@ app.post("/upload",async (req,res)=>{
     }
 }) 
 
-var name;
-app.post("/show",async (req,res)=>{
-Register.findOne({eno: req.body.Enrollment}).select('file').then((data)=>{
-     name= data;
-    console.log(name);
-})
-})
+// var name;
+// app.post("/show",async (req,res)=>{
+// Register.findOne({eno: req.body.Enrollment}).select('file').then((data)=>{
+//      name= data;
+//     console.log(name);
+// })
+// })
 
 
 
@@ -58,6 +58,18 @@ app.get("/index",function(req,res){
 app.get("/search",function(req,res){
     res.render('search');
 })
-app.get("/display",function(req,res){
-    res.render('search',{name:name});
-})
+// app.get("/display",function(req,res){
+//     res.render('search',{name:name});
+// })
+app.get("/show", async(req,res) => {
+    Submit.find((err,docs)=>{
+        if(!err){
+            res.render("search",{
+                list: docs
+            });
+        }
+        else{
+            console.log(err);
+        }
+    });
+});

@@ -16,5 +16,5 @@ const user=new mongoose.Schema({
 // const User = mongoose.model('USER', user);
 
 // module.exports = User;
-const Register = new mongoose.model("Register",user);
-module.exports = Register;
+const Submit = new mongoose.model("Submit",user);
+module.exports = Submit;
